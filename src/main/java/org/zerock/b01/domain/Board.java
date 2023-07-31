@@ -10,9 +10,9 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Board {
+public class Board extends BaseEntity{
 
-    @Id
+    @Id // 기본키
     @GeneratedValue(strategy = GenerationType.IDENTITY) // 기본 키 pk // 오라클은 sequence , mysql은 identity
     private Long bno;
 
@@ -22,6 +22,6 @@ public class Board {
     @Column(length = 2000, nullable = false) // varchar(2000) not null 이란 뜻
     private String content;
 
-    @Column(length = 50, nullable = false, updatable = false)
+    @Column(length = 50, nullable = false, updatable = false) // 업데이트를 허용하지 않겠다.
     private String writer;
 }
