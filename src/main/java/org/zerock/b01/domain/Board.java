@@ -24,4 +24,9 @@ public class Board extends BaseEntity{
 
     @Column(length = 50, nullable = false, updatable = false) // 업데이트를 허용하지 않겠다.
     private String writer;
+
+    public void change(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
 }

@@ -33,4 +33,21 @@ class BoardServiceImplTests {
         Long bno = boardService.register(boardDTO);
         log.info("bno : " + bno);
     }
+
+    @Test
+    public void testReadOne(){
+        BoardDTO boardDTO = boardService.readOne(101L);
+
+        log.info("boardDTO : " + boardDTO);
+    }
+
+    @Test
+    public void testModify(){
+        BoardDTO boardDTO = BoardDTO.builder()
+                .bno(101L)
+                .title("수정 테스트")
+                .content("수정 내용 테스트")
+                .build();
+                boardService.modify(boardDTO);
+    }
 }

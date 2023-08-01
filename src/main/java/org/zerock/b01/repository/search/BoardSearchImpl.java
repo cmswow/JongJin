@@ -30,7 +30,10 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
 
 
 
-
         return new PageImpl<>(list,pageable,count);
     }
+
+
+
+
 }

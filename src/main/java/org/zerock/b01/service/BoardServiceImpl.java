@@ -9,6 +9,8 @@ import org.zerock.b01.domain.Board;
 import org.zerock.b01.dto.BoardDTO;
 import org.zerock.b01.repository.BoardRepository;
 
+import java.util.Optional;
+
 @Service
 @Log4j2
 @RequiredArgsConstructor
@@ -16,7 +18,6 @@ import org.zerock.b01.repository.BoardRepository;
 public class BoardServiceImpl implements BoardService{
 
     private final ModelMapper modelMapper;
-
     private final BoardRepository boardRepository;
     @Override
     public Long register(BoardDTO boardDTO) {
@@ -25,5 +26,25 @@ public class BoardServiceImpl implements BoardService{
         //-----------DB저장 ------------------>저장된 Bno값을 반환
 
         return bno;
+    }
+
+    @Override
+    public BoardDTO readOne(Long bno) {
+
+        Optional<Board> result = boardRepository.findById(bno);
+        Board board = result.orElseThrow();
+        BoardDTO boardDTO = modelMapper.map(board, BoardDTO.class);
+
+        return boardDTO;
+    }
+
+    @Override
+    public void modify(BoardDTO boardDTO) {
+        Optional<Board> result = boardRepository.findById(boardDTO.getBno());
+
+        Board board = result.orElseThrow();
+        board.change(boardDTO.getTitle(), boardDTO.getContent());
+        boardRepository.save(board); // save --> insert,update 두 기능 수행
+
     }
 }
