@@ -8,7 +8,7 @@ import java.util.List;
 
 @Getter
 @ToString
-@Builder
+
 public class PageResponseDTO <E> {
 
     private int page;
@@ -48,9 +48,7 @@ public class PageResponseDTO <E> {
         this.next = total > this.end * this.size; // 105 >100
         //105 > 10 * 10 = 100
 
-        //명선아ㅏㅏㅏㅏㅏㅏ설명해줘ㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓ
-        //제에바아ㅏ아아아아ㅏㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹ
-        //살려줘ㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗ
+
 
 
     }

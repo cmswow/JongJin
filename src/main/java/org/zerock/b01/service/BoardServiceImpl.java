@@ -75,14 +75,24 @@ public class BoardServiceImpl implements BoardService{
         log.info("------------------------------------------------");
         // ---------------------------------------
 
+
+        // board(entity)---> boardDTO로 변환(mapper)
         List<BoardDTO> dtoList = result.getContent().stream()
                 .map(board -> modelMapper.map(board,BoardDTO.class)).collect(Collectors.toList());
 
-        return PageResponseDTO.<BoardDTO>withAll()
-                .pageRequestDTO(pageRequestDTO)
-                .dtoList(dtoList)
-                .total((int)result.getTotalElements())
-                .build();
+        PageResponseDTO<BoardDTO> pageResponseDTO =
+                new PageResponseDTO<>(pageRequestDTO, dtoList,(int) result.getTotalElements());
+
+        return pageResponseDTO;
+
+
+
+//        return PageResponseDTO.<BoardDTO>withAll()
+
+//                .pageRequestDTO(pageRequestDTO)
+//                .dtoList(dtoList)
+//                .total((int)result.getTotalElements())
+//                .build();
     }
 
 

@@ -70,7 +70,8 @@ class BoardServiceImplTests {
 
 
 
-        PageResponseDTO<BoardDTO> responseDTO = boardService.list(pageRequestDTO);
+        PageResponseDTO<BoardDTO> responseDTO =
+                boardService.list(pageRequestDTO);
         log.info("responseDTO===>" + responseDTO);
     }
 }
