@@ -78,10 +78,31 @@
             </div>
         </div>
     </div>
+
+    <!-- 모달창 -->
+    <div class="modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="modalContent">Modal body text goes here.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div> <!-- end modal -->
+
 </div>
 
 <script layout:fragment="script" th:inline="javascript">
 
+    //페이지 버튼 눌렀을때 페이지 변경
     document.querySelector(".pagination").addEventListener("click",function(e){
         e.preventDefault();
         e.stopPropagation();
@@ -94,15 +115,25 @@
         const formObj = document.querySelector("form");
         formObj.innerHTML += `<input type='hidden' name='page' value='${num}'>`;
         formObj.submit();
-    },false);  // 페이지 번호 넘어가는 클릭..버튼 .. 되게 하는거 ..
+    },false);
 
+    //clear 버튼 눌렀을때 처음으로 돌아가기
+    document.querySelector(".clearBtn").addEventListener("click", function (e){
+        e.preventDefault();
+        e.stopPropagation();
 
-    document.querySelector(".clearBtn").addEventListener("click",function (e) {
-        e.preventDefault()
-        e.stopPropagation()
+        self.location = '/board/list';
+    }, false)
 
-        self.location = '/board/list'
-    },false)  // 클리어 버튼 누르면 지워짐
+    //show modal
+    const result = [[${result}]]
+
+    const modal = new bootstrap.Modal(document.querySelector(".modal"));
+    if(result){
+        const modalContent = document.getElementById("modalContent");
+        modalContent.textContent = result + "번 등록 성공";
+        modal.show();
+    }
+
 </script>
-
 </html>

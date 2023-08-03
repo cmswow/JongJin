@@ -35,7 +35,9 @@ public class BoardController {
     public void registerGET() {
 
     }
-    @PostMapping("/register")
+    @PostMapping("/register") // valid: 유효성검사,boardDTO안에서 정해둔 규칙을 벗어나면 hasErrors,
+    // BindingResult: valid와 같이 사용됨 , 오류 결과값을 담아 출력할수있게함
+    // rttr : errors 메세지를 담아 전송함
     public String registerPOST(@Valid BoardDTO boardDTO, BindingResult bindingResult, RedirectAttributes rttr) {
 
         log.info("board POST register....");
